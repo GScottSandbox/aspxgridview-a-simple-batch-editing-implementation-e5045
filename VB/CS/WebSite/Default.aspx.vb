@@ -24,7 +24,7 @@ Partial Public Class _Default
                     .C5 = New Date(2013 + i, 12, 16) _
                 }).ToList()
             End If
-            Return DirectCast(Session(key), List(Of GridDataItem))
+            Return CType(Session(key), List(Of GridDataItem))
         End Get
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs)
@@ -68,16 +68,14 @@ Partial Public Class _Default
         Return item
     End Function
     Protected Function UpdateItem(ByVal keys As OrderedDictionary, ByVal newValues As OrderedDictionary) As GridDataItem
-
-        Dim id_Renamed = Convert.ToInt32(keys("ID"))
-        Dim item = GridData.First(Function(i) i.ID = id_Renamed)
+        Dim id = Convert.ToInt32(keys("ID"))
+        Dim item = GridData.First(Function(i) i.ID = id)
         LoadNewValues(item, newValues)
         Return item
     End Function
     Protected Function DeleteItem(ByVal keys As OrderedDictionary, ByVal values As OrderedDictionary) As GridDataItem
-
-        Dim id_Renamed = Convert.ToInt32(keys("ID"))
-        Dim item = GridData.First(Function(i) i.ID = id_Renamed)
+        Dim id = Convert.ToInt32(keys("ID"))
+        Dim item = GridData.First(Function(i) i.ID = id)
         GridData.Remove(item)
         Return item
     End Function
